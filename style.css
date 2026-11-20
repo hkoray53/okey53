@@ -30,7 +30,6 @@ body {
   flex-direction: column;
   height: 100dvh;
   overflow: hidden;
-  /* Orientalisches Spieltuch mit dezentem Rauten-/Sternmuster */
   background-color: var(--felt-bg);
   background-image:
     radial-gradient(circle at 50% 20%, rgba(20, 83, 66, 0.65), rgba(7, 27, 22, 0.95) 85%),
@@ -50,7 +49,6 @@ body {
     );
 }
 
-/* Holzleisten oben & unten (wie Okey-Istaka) */
 .topbar,
 .bottom-bar,
 .keypad-sheet {
@@ -197,7 +195,6 @@ body {
   border-color: var(--gold-bright);
 }
 
-/* Runden-Tabelle auf dem Spieltisch */
 .table-container {
   flex: 1;
   overflow-y: auto;
@@ -220,7 +217,6 @@ body {
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
 }
 
-/* Okey-Stein-Optik für Eingabefelder */
 .score-cell {
   background: linear-gradient(180deg, #fffdf7 0%, var(--tile-ivory) 78%, #efe2c6 100%);
   color: var(--ink);
@@ -263,7 +259,6 @@ body {
   transform: translateY(-1px);
 }
 
-/* Untere Aktionsleiste */
 .bottom-bar {
   display: grid;
   grid-template-columns: 1.05fr 1.65fr 0.7fr;
@@ -309,7 +304,6 @@ body {
   margin-top: 14px;
 }
 
-/* Tastenfeld-Overlay */
 .keypad-overlay,
 .modal-overlay {
   position: fixed;
@@ -359,7 +353,6 @@ body {
   cursor: pointer;
 }
 
-/* Stein-Display im Tastenfeld */
 .keypad-display {
   background: linear-gradient(180deg, #fffdf7 0%, var(--tile-ivory) 82%, #ead9b7 100%);
   color: var(--ink);
@@ -410,7 +403,6 @@ body {
   margin-bottom: 8px;
 }
 
-/* Zifferntasten wie kleine Okey-Steine */
 .num-btn {
   background: linear-gradient(180deg, #fffdf8 0%, var(--tile-ivory) 80%, #ead8b5 100%);
   color: var(--ink);
@@ -448,7 +440,6 @@ body {
   gap: 8px;
 }
 
-/* Ergebnis-Modal mit Holz- & Goldrahmen */
 .modal-card {
   width: 100%;
   max-width: 400px;
