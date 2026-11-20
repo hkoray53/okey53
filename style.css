@@ -1,0 +1,575 @@
+:root {
+  --wood-dark: #23140b;
+  --wood-mid: #3b2212;
+  --wood-light: #59341b;
+  --wood-highlight: #7a4927;
+  --felt-bg: #0c2a22;
+  --felt-deep: #071b16;
+  --tile-ivory: #fbf4e4;
+  --tile-shadow: #cbb994;
+  --ink: #1e1610;
+  --gold: #e5b85b;
+  --gold-bright: #f7d588;
+  --gold-dim: rgba(229, 184, 91, 0.28);
+  --turquoise: #2dd4bf;
+  --crimson: #e11d48;
+  --emerald: #10b981;
+  --muted: #cbb89d;
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+body {
+  margin: 0;
+  color: var(--tile-ivory);
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+  overflow: hidden;
+  /* Orientalisches Spieltuch mit dezentem Rauten-/Sternmuster */
+  background-color: var(--felt-bg);
+  background-image:
+    radial-gradient(circle at 50% 20%, rgba(20, 83, 66, 0.65), rgba(7, 27, 22, 0.95) 85%),
+    repeating-linear-gradient(
+      45deg,
+      rgba(229, 184, 91, 0.035) 0px,
+      rgba(229, 184, 91, 0.035) 2px,
+      transparent 2px,
+      transparent 18px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      rgba(229, 184, 91, 0.035) 0px,
+      rgba(229, 184, 91, 0.035) 2px,
+      transparent 2px,
+      transparent 18px
+    );
+}
+
+/* Holzleisten oben & unten (wie Okey-Istaka) */
+.topbar,
+.bottom-bar,
+.keypad-sheet {
+  background:
+    repeating-linear-gradient(
+      90deg,
+      rgba(255, 224, 178, 0.03) 0px,
+      rgba(255, 224, 178, 0.03) 6px,
+      rgba(0, 0, 0, 0.09) 6px,
+      rgba(0, 0, 0, 0.09) 14px
+    ),
+    linear-gradient(180deg, var(--wood-light) 0%, var(--wood-mid) 55%, var(--wood-dark) 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 232, 196, 0.22),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.55);
+}
+
+.topbar {
+  padding: calc(env(safe-area-inset-top, 6px) + 4px) 6px 8px;
+  border-bottom: 2px solid var(--gold);
+}
+
+.app-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 5px;
+}
+
+.app-title {
+  margin: 0;
+  font-size: 0.85rem;
+  font-weight: 900;
+  letter-spacing: 0.22em;
+  color: var(--gold-bright);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.ornament-star {
+  color: var(--gold);
+  font-size: 0.72rem;
+  opacity: 0.9;
+}
+
+.team-banners {
+  display: grid;
+  grid-template-columns: 24px 1fr 24px 1fr;
+  gap: 4px;
+  margin-bottom: 6px;
+}
+
+.team-name {
+  width: 100%;
+  text-align: center;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  padding: 5px 6px;
+  border-radius: 7px;
+  border: 1px solid rgba(229, 184, 91, 0.45);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.45);
+}
+
+.team-name.team1 {
+  grid-column: 1 / 3;
+  background: linear-gradient(180deg, #115e59, #0d3d3a);
+  color: #99f6e4;
+}
+
+.team-name.team2 {
+  grid-column: 3 / 5;
+  background: linear-gradient(180deg, #78350f, #4c1d09);
+  color: #fde68a;
+}
+
+.team-name.team1:focus {
+  outline: none;
+  border-color: var(--turquoise);
+  box-shadow: 0 0 0 2px rgba(45, 212, 191, 0.25);
+}
+
+.team-name.team2:focus {
+  outline: none;
+  border-color: var(--gold-bright);
+  box-shadow: 0 0 0 2px rgba(247, 213, 136, 0.25);
+}
+
+.player-headers {
+  display: grid;
+  grid-template-columns: 24px 0.85fr 1fr 1fr 0.85fr 1fr 1fr;
+  gap: 3px;
+  align-items: center;
+}
+
+.player-headers::before {
+  content: "#";
+  text-align: center;
+  color: var(--gold);
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+
+.col-tag {
+  text-align: center;
+  font-size: 0.68rem;
+  font-weight: 900;
+  padding: 6px 2px;
+  border-radius: 6px;
+  border: 1px dashed rgba(229, 184, 91, 0.4);
+}
+
+.col-tag.t1 {
+  background: rgba(13, 148, 136, 0.28);
+  color: #99f6e4;
+}
+
+.col-tag.t2 {
+  background: rgba(180, 83, 9, 0.28);
+  color: #fde68a;
+}
+
+.player-name {
+  width: 100%;
+  min-width: 0;
+  background: rgba(24, 13, 7, 0.85);
+  color: var(--tile-ivory);
+  border: 1px solid rgba(229, 184, 91, 0.32);
+  border-radius: 7px;
+  padding: 6px 2px;
+  text-align: center;
+  font-size: 0.76rem;
+  font-weight: 600;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.6);
+}
+
+.player-name.t1:focus {
+  outline: none;
+  border-color: var(--turquoise);
+}
+
+.player-name.t2:focus {
+  outline: none;
+  border-color: var(--gold-bright);
+}
+
+/* Runden-Tabelle auf dem Spieltisch */
+.table-container {
+  flex: 1;
+  overflow-y: auto;
+  padding: 6px 6px 22px;
+}
+
+.score-table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: separate;
+  border-spacing: 3px 6px;
+}
+
+.round-num {
+  width: 24px;
+  text-align: center;
+  color: var(--gold);
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+/* Okey-Stein-Optik für Eingabefelder */
+.score-cell {
+  background: linear-gradient(180deg, #fffdf7 0%, var(--tile-ivory) 78%, #efe2c6 100%);
+  color: var(--ink);
+  border: 1px solid #e6d5b3;
+  border-bottom: 3px solid var(--tile-shadow);
+  border-radius: 7px;
+  height: 42px;
+  text-align: center;
+  font-size: 0.96rem;
+  font-weight: 800;
+  cursor: pointer;
+  user-select: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.45);
+  transition: transform 0.08s ease;
+}
+
+.score-cell.team-penalty {
+  background: linear-gradient(180deg, #f3e5c8 0%, #e4cfa7 82%, #cbb082 100%);
+  border-style: dashed;
+  border-color: rgba(122, 73, 39, 0.65);
+  font-size: 0.88rem;
+}
+
+.score-cell.empty {
+  color: #9a866a;
+  font-weight: 500;
+}
+
+.score-cell.pos-val {
+  color: #1e1610;
+}
+
+.score-cell.neg-val {
+  color: #047857;
+}
+
+.score-cell.active {
+  border: 2px solid var(--gold-bright);
+  box-shadow: 0 0 0 2px rgba(247, 213, 136, 0.45), 0 3px 6px rgba(0, 0, 0, 0.55);
+  transform: translateY(-1px);
+}
+
+/* Untere Aktionsleiste */
+.bottom-bar {
+  display: grid;
+  grid-template-columns: 1.05fr 1.65fr 0.7fr;
+  gap: 8px;
+  padding: 10px 10px calc(env(safe-area-inset-bottom, 10px) + 6px);
+  border-top: 2px solid var(--gold);
+}
+
+.btn {
+  border: none;
+  border-radius: 10px;
+  padding: 12px 10px;
+  font-size: 0.92rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: transform 0.08s ease, filter 0.12s ease;
+}
+
+.btn.wood-btn {
+  background: linear-gradient(180deg, #6d4022, #462712);
+  color: var(--tile-ivory);
+  border: 1px solid rgba(229, 184, 91, 0.4);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.45);
+}
+
+.btn.gold-btn {
+  background: linear-gradient(180deg, #f5cf76 0%, #d49e35 100%);
+  color: #211206;
+  border: 1px solid #fae3a8;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+}
+
+.btn.crimson-btn {
+  background: linear-gradient(180deg, #be123c, #881337);
+  color: #ffe4e6;
+  border: 1px solid rgba(251, 113, 133, 0.4);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.45);
+}
+
+.btn.full {
+  width: 100%;
+  margin-top: 14px;
+}
+
+/* Tastenfeld-Overlay */
+.keypad-overlay,
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(4, 12, 10, 0.78);
+  backdrop-filter: blur(2px);
+  display: flex;
+  align-items: flex-end;
+  z-index: 50;
+}
+
+.modal-overlay {
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.keypad-sheet {
+  width: 100%;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  padding: 12px 12px calc(env(safe-area-inset-bottom, 12px) + 8px);
+  border-top: 2px solid var(--gold);
+}
+
+.keypad-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--gold-bright);
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.close-btn {
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(229, 184, 91, 0.35);
+  border-radius: 8px;
+  color: var(--gold-bright);
+  font-size: 1.05rem;
+  padding: 4px 9px;
+  cursor: pointer;
+}
+
+/* Stein-Display im Tastenfeld */
+.keypad-display {
+  background: linear-gradient(180deg, #fffdf7 0%, var(--tile-ivory) 82%, #ead9b7 100%);
+  color: var(--ink);
+  border: 1px solid #e6d5b3;
+  border-bottom: 4px solid var(--tile-shadow);
+  border-radius: 11px;
+  padding: 10px 14px;
+  text-align: right;
+  font-size: 1.85rem;
+  font-weight: 900;
+  margin-bottom: 8px;
+  letter-spacing: 0.03em;
+  box-shadow: inset 0 1px 0 #ffffff, 0 3px 6px rgba(0, 0, 0, 0.45);
+}
+
+.quick-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.quick-btn {
+  border-radius: 8px;
+  padding: 10px 0;
+  font-size: 0.94rem;
+  font-weight: 900;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.quick-btn.neg {
+  background: linear-gradient(180deg, #065f46, #04392a);
+  color: #6ee7b7;
+  border: 1px solid rgba(110, 231, 183, 0.4);
+}
+
+.quick-btn.pos {
+  background: linear-gradient(180deg, #9f1239, #640b24);
+  color: #fecdd3;
+  border: 1px solid rgba(253, 164, 175, 0.4);
+}
+
+.numpad-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+/* Zifferntasten wie kleine Okey-Steine */
+.num-btn {
+  background: linear-gradient(180deg, #fffdf8 0%, var(--tile-ivory) 80%, #ead8b5 100%);
+  color: var(--ink);
+  border: 1px solid #e4d2ae;
+  border-bottom: 3px solid var(--tile-shadow);
+  border-radius: 10px;
+  padding: 13px 0;
+  font-size: 1.3rem;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.45);
+}
+
+.num-btn.del {
+  background: linear-gradient(180deg, #881337, #590b22);
+  color: #fecdd3;
+  border: 1px solid rgba(251, 113, 133, 0.45);
+  border-bottom: 3px solid #3b0515;
+}
+
+.num-btn.sign {
+  color: #0f766e;
+}
+
+.num-btn:active,
+.quick-btn:active,
+.btn:active {
+  transform: scale(0.97);
+  filter: brightness(1.06);
+}
+
+.keypad-actions {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 8px;
+}
+
+/* Ergebnis-Modal mit Holz- & Goldrahmen */
+.modal-card {
+  width: 100%;
+  max-width: 400px;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(20, 83, 66, 0.55), rgba(14, 38, 31, 0.96) 75%);
+  border: 2px solid var(--gold);
+  border-radius: 20px;
+  padding: 18px;
+  text-align: center;
+  box-shadow:
+    0 12px 30px rgba(0, 0, 0, 0.75),
+    inset 0 0 0 3px rgba(90, 52, 27, 0.75);
+}
+
+.modal-ornament {
+  color: var(--gold);
+  font-size: 0.85rem;
+  letter-spacing: 0.25em;
+  margin-bottom: 2px;
+}
+
+.modal-card h2 {
+  margin: 0 0 14px;
+  font-size: 1.25rem;
+  color: var(--gold-bright);
+  letter-spacing: 0.04em;
+}
+
+.team-results {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.team-box {
+  background: linear-gradient(180deg, var(--wood-light), var(--wood-dark));
+  border-radius: 12px;
+  padding: 12px 8px;
+  border: 1px solid rgba(229, 184, 91, 0.45);
+  box-shadow: inset 0 1px 0 rgba(255, 228, 186, 0.2), 0 3px 6px rgba(0, 0, 0, 0.45);
+}
+
+.team-box.winner {
+  border: 2px solid var(--gold-bright);
+  box-shadow: 0 0 14px rgba(247, 213, 136, 0.35);
+}
+
+.t-title {
+  font-size: 0.82rem;
+  font-weight: 900;
+  color: var(--gold-bright);
+  letter-spacing: 0.05em;
+}
+
+.t-players {
+  font-size: 0.78rem;
+  margin: 4px 0 8px;
+  color: var(--muted);
+}
+
+.t-score {
+  display: inline-block;
+  min-width: 64px;
+  padding: 4px 10px;
+  border-radius: 9px;
+  background: var(--tile-ivory);
+  color: var(--ink);
+  border-bottom: 3px solid var(--tile-shadow);
+  font-size: 1.85rem;
+  font-weight: 900;
+}
+
+.t-sub {
+  font-size: 0.76rem;
+  color: var(--muted);
+  margin-top: 6px;
+}
+
+.winner-banner {
+  margin-top: 14px;
+  padding: 10px;
+  border-radius: 10px;
+  background: rgba(16, 185, 129, 0.22);
+  border: 1px solid rgba(110, 231, 183, 0.45);
+  color: #a7f3d0;
+  font-weight: 800;
+  font-size: 0.94rem;
+}
+
+.quote-box {
+  margin-top: 12px;
+  padding: 12px;
+  border-radius: 12px;
+  background: linear-gradient(180deg, rgba(59, 34, 18, 0.9), rgba(35, 20, 11, 0.95));
+  border: 1px dashed rgba(229, 184, 91, 0.6);
+}
+
+.quote-ornament {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 6px;
+}
+
+.quote-text {
+  margin: 0 0 10px;
+  font-size: 0.92rem;
+  font-style: italic;
+  line-height: 1.42;
+  color: var(--tile-ivory);
+}
+
+.quote-btn {
+  background: linear-gradient(180deg, #6d4022, #462712);
+  color: var(--gold-bright);
+  border: 1px solid rgba(229, 184, 91, 0.45);
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+}

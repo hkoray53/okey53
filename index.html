@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Okey 101" />
+  <title>Okey 101 – Masası</title>
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="app-title-row">
+      <span class="ornament-star">✦</span>
+      <h1 class="app-title">OKEY 101</h1>
+      <span class="ornament-star">✦</span>
+    </div>
+
+    <div class="team-banners">
+      <input type="text" class="team-name team1" data-team="0" value="TEAM 1" aria-label="Team 1 Name" />
+      <input type="text" class="team-name team2" data-team="1" value="TEAM 2" aria-label="Team 2 Name" />
+    </div>
+
+    <div class="player-headers">
+      <div class="col-tag t1">T1</div>
+      <input type="text" class="player-name t1" data-player="0" value="Spieler 1" aria-label="Spieler 1" />
+      <input type="text" class="player-name t1" data-player="1" value="Spieler 2" aria-label="Spieler 2" />
+      <div class="col-tag t2">T2</div>
+      <input type="text" class="player-name t2" data-player="2" value="Spieler 3" aria-label="Spieler 3" />
+      <input type="text" class="player-name t2" data-player="3" value="Spieler 4" aria-label="Spieler 4" />
+    </div>
+  </header>
+
+  <main class="table-container" id="tableContainer">
+    <table class="score-table">
+      <tbody id="roundsBody"></tbody>
+    </table>
+  </main>
+
+  <footer class="bottom-bar">
+    <button id="addRoundBtn" class="btn wood-btn">+ Runde</button>
+    <button id="calcResultBtn" class="btn gold-btn">Gesamtergebnis</button>
+    <button id="resetBtn" class="btn crimson-btn" title="Neues Spiel">Neu</button>
+  </footer>
+
+  <!-- Eigenes Tastenfeld (Holz-Ablagebank / Istaka) -->
+  <div id="keypadOverlay" class="keypad-overlay hidden">
+    <div class="keypad-sheet">
+      <div class="keypad-header">
+        <span id="keypadLabel">Runde 1 – Spieler 1</span>
+        <button id="closeKeypadBtn" class="close-btn">✕</button>
+      </div>
+      <div class="keypad-display" id="keypadDisplay">0</div>
+
+      <div class="quick-row">
+        <button class="quick-btn neg" data-quick="-101">-101</button>
+        <button class="quick-btn neg" data-quick="-202">-202</button>
+        <button class="quick-btn pos" data-quick="101">+101</button>
+        <button class="quick-btn pos" data-quick="202">+202</button>
+      </div>
+
+      <div class="numpad-grid">
+        <button class="num-btn" data-key="1">1</button>
+        <button class="num-btn" data-key="2">2</button>
+        <button class="num-btn" data-key="3">3</button>
+        <button class="num-btn" data-key="4">4</button>
+        <button class="num-btn" data-key="5">5</button>
+        <button class="num-btn" data-key="6">6</button>
+        <button class="num-btn" data-key="7">7</button>
+        <button class="num-btn" data-key="8">8</button>
+        <button class="num-btn" data-key="9">9</button>
+        <button class="num-btn sign" data-key="sign">+/-</button>
+        <button class="num-btn" data-key="0">0</button>
+        <button class="num-btn del" data-key="del">C</button>
+      </div>
+
+      <div class="keypad-actions">
+        <button id="clearKeyBtn" class="btn wood-btn">Löschen</button>
+        <button id="confirmKeyBtn" class="btn gold-btn">OK & Weiter</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ergebnis-Modal -->
+  <div id="resultModal" class="modal-overlay hidden">
+    <div class="modal-card">
+      <div class="modal-ornament">❖ ✦ ❖</div>
+      <h2>Gesamtergebnis</h2>
+      <div class="team-results">
+        <div class="team-box t1" id="team1Box">
+          <div class="t-title" id="team1Title">TEAM 1</div>
+          <div class="t-players" id="team1Names">Spieler 1 & Spieler 2</div>
+          <div class="t-score" id="team1Total">0</div>
+          <div class="t-sub" id="team1Breakdown">0 + 0 + 0</div>
+        </div>
+        <div class="team-box t2" id="team2Box">
+          <div class="t-title" id="team2Title">TEAM 2</div>
+          <div class="t-players" id="team2Names">Spieler 3 & Spieler 4</div>
+          <div class="t-score" id="team2Total">0</div>
+          <div class="t-sub" id="team2Breakdown">0 + 0 + 0</div>
+        </div>
+      </div>
+      <div id="winnerBanner" class="winner-banner"></div>
+
+      <div class="quote-box">
+        <div class="quote-ornament">✦ Masa Sözü ✦</div>
+        <p id="quoteText" class="quote-text"></p>
+        <button id="nextQuoteBtn" type="button" class="quote-btn">🎲 Neuer Spruch</button>
+      </div>
+
+      <button id="closeModalBtn" class="btn gold-btn full">Zurück zur Tabelle</button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

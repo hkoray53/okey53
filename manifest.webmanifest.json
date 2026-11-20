@@ -1,0 +1,9 @@
+{
+  "name": "Okey 101 Rechner",
+  "short_name": "Okey 101",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#23140b",
+  "theme_color": "#3b2212",
+  "orientation": "portrait"
+}
