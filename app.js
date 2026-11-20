@@ -23,7 +23,6 @@ const KUMAR_QUOTES = [
   "„Kumarda şansımız yok, aşkta zaten hiç olmadı.“",
   "„Her açılan kart, kapanmayan bir yaradır.“",
   "„Masaya umutla oturduk, pişmanlıkla kalktık.“",
-  "„Böyle sikerler iste“",
   "„Kader bize rest çekti, biz yine de görmek istedik.“",
   "„Elimizde koz vardı, ama gönlümüzde hep sızı.“",
   "„Kumar masasında dost belli olur, son elde herkes kaybolur.“",
@@ -228,10 +227,13 @@ document.querySelectorAll(".quick-btn").forEach((btn) => {
   });
 });
 
-document.getElementById("clearKeyBtn").addEventListener("click", () => {
-  state.rounds[activeCell.round][activeCell.col] = null;
-  saveState();
-  closeKeypad();
+// Çift: verdoppelt die aktuell eingegebenen Punkte
+document.getElementById("ciftKeyBtn").addEventListener("click", () => {
+  const parsed = parseInt(currentInput, 10);
+  const currentNum = isNaN(parsed) ? 0 : parsed;
+  const doubled = currentNum * 2;
+  currentInput = String(doubled).slice(0, 6);
+  updateKeypadUI();
 });
 
 document.getElementById("confirmKeyBtn").addEventListener("click", () => {
