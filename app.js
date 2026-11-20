@@ -11,6 +11,7 @@ const COLUMN_COUNT = 6;
 
 const KUMAR_QUOTES = [
   "„Kumarda kaybeden, aşkta kazanır.“",
+  "„Ben sana demedimmi o taşı atma diye!“",
   "„Kartlar yalan söylemez, insanlar söyler.“",
   "„Şans masada biter, aşk kalpte başlar.“",
   "„Kumar masasında paramızı, hayatta zamanımızı kaybettik.“",
